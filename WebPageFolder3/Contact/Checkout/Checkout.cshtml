@@ -1,0 +1,99 @@
+﻿@page
+@model BurgerQueen_PACUR12400.Pages.Checkout.CheckoutModel
+@{
+    ViewData["Title"] = "Checkout page";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/checkout.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="billing-address">
+                    <h2>Billing Address</h2>
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                            <input class="form-control" asp-for="CheckoutDto.FullName" type="text" id="fname" name="firstname" placeholder="John M. Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                            <input class="form-control" asp-for="CheckoutDto.Email" type="text" id="email" name="email" placeholder="john@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="adr"><i class="fa fa-envelope"></i> Address</label>
+                            <input class="form-control" asp-for="CheckoutDto.Address" type="text" id="adr" name="adr" placeholder="no32 Jalan Random BSB">
+                        </div>
+                        <!-- Add other billing address fields here -->
+                    </form>
+                </div>
+                <div class="payment">
+                    <h2>Payment</h2>
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="cname">Name on Card</label>
+                            <input class="form-control" asp-for="CheckoutDto.CardName" type="text" id="cname" name="cardname" placeholder="John More Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="cname">Card Number</label>
+                            <input class="form-control" asp-for="CheckoutDto.CardNumber" type="text" id="cnum" name="cardnum" placeholder="0000-000-000">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input class="form-control" asp-for="CheckoutDto.CVV" type="text" id="cvv" name="cvv" placeholder="000">
+                        </div>
+                       
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="cart-summary">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="tblheader" colspan="4">Cart Summary</th>
+                                </tr>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                </tr>
+                                <tbody>
+                                @foreach (var item in Model.CartItems)
+                                {
+                                    <tr>
+                                        <td>@item.Tbl_products.Name</td>
+                                        <td>$@item.Tbl_products.Price.ToString("0.00")</td>
+                                        <td>@item.Quantity</td>
+                                    </tr>
+                                }
+                            </tbody>
+                                <tfoot>
+                                    <tr class="total">
+                                        <td colspan="2">Total</td>
+                                        <td><span id="cart-total">$@Model.CartTotal.ToString("0.00")</span></td>
+                                    </tr>
+                                </tfoot>
+                              </thead>
+                        </table>
+                </div>
+            </div>
+        </div>
+        <div class="back-to-cart">
+            <a href="/Cart/Cart" class="btn btn-cart">Back to Cart</a>
+        </div>
+        <div class="checkout-btn">
+            <form method="post" asp-page-handler="Checkout">
+                <button type="submit" class="btn btn-success">Checkout</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
