@@ -1,0 +1,39 @@
+﻿@page
+@model ItemModel
+@{
+
+    ViewData["Title"] = "ProductPage";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Item.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Our Products</h1>
+        <div class="product-list">
+            @foreach (var product in Model.Products)
+            {
+                <div class="product-card" data-id="@product.ProductID">
+                    <img src="~/img/@product.ImageFileName" alt="product image" />
+                    <div class="product-details">
+                        <h2>@product.Name</h2>
+                        <p class="description">@product.Description</p>
+                        <p class="price">$@product.Price.ToString("0.00")</p>
+                        <form method="post" asp-page-handler="AddToCart">
+                            <input type="hidden" name="productId" value="@product.ProductID" />
+                            <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                        </form>
+                       
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
