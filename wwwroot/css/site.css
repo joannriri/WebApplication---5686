@@ -1,0 +1,93 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+li{
+    float: left;
+   
+}
+/*nav bar content*/
+.navbar{
+    background-color: #ff8a08;
+    padding: 10px 0;
+    border-radius: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.navbar .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar .navbar-brand{
+    font-size: 1.5em;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+.navbar .navbar-brand img{
+    max-height: 40px;
+    max-width: 100px;
+    margin-right: 10px;
+}
+.navbar .navbar-collapse{
+    display: flex;
+}
+.navbar .navbar-nav{
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+.navbar .nav-item{
+    margin-right: 20px;
+}
+
+li a{
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        border-radius: 30px
+    }
+li a:hover{
+        background-color: #FF8A08
+    }
+
+footer{
+    background-color: rgb(52, 49, 51);
+    padding: 10px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+.footer a{
+    margin: 0 10px;
+    text-decoration: none;
+    color: #ff8a08;
+}
+.footer a:hover{
+    text-decoration: underline;
+}
