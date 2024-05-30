@@ -1,0 +1,60 @@
+﻿@page
+@model BurgerQueen_PACUR12400.Pages.Cart.CartModel
+@{
+    ViewData["Title"] = "Cart page";
+}
+<!DOCTYPE html>
+    <head>
+        <title>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>@ViewData["Title"]</title>
+            <link rel="stylesheet" href="~/css/site.css" />
+            <link rel="stylesheet" href="~/css/cart.css" />
+        </title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Your Cart</h1>
+            <div id="cart-items" class="cart-items">
+                @foreach (var item in Model.CartItems)
+                {
+                    <div class="cart-item">
+                        <img src="~/img/@item.Tbl_products.ImageFileName" alt="item.Tbl_products.Name" class="cart-item-image" />
+                        <div class="cart-item-details">
+                            <h4>@item.Tbl_products.Name</h4>
+                            <p>Price: $@item.Tbl_products.Price.ToString("0.00")</p>
+                            <div class="cart-item-quantity">
+                                <form method="post" asp-page-handler="UpdateQuantity">
+                                    <input type="hidden" name="cartItemId" value="@item.Id" />
+                                    <button type="submit" class="btn btn-secondary btn-sm" name="change" value="-1">-</button>
+                                    <span>@item.Quantity</span>
+                                    <button type="submit" class="btn btn-secondary btn-sm" name="change" value="1">+</button>
+                                </form>
+                            </div>
+                            <p>Total: $@((item.Quantity * item.Tbl_products.Price).ToString("0.00"))</p>
+                            <form method="post" asp-page-handler="RemoveItem">
+                                <input type="hidden" name="cartItemId" value="@item.Id"/>
+                                <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+
+                }            
+            </div>
+            <div class="cart-summary">
+                <h3>Total:  <span id="cart-total">$@Model.CartTotal.ToString("0.00")</span></h3>
+                <form method="post" asp-page-handler="ClearCart">
+                    <button type="submit" class="btn btn-danger">Clear Cart</button>
+                </form>
+                <form method="post" asp-page-handler="AddProduct">
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                </form>
+                <form method="post" asp-page-handler="Checkout">
+                    <button type="submit" class="btn btn-success">Proceed to Checkout</button>
+                </form>
+                
+            </div>
+        </div>  
+    </body>
+</html>
