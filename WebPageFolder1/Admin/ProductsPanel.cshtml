@@ -1,0 +1,77 @@
+﻿@page
+@model BurgerQueen_PACUR12400.Pages.Admin.ProductsPanelModel
+
+@{
+    ViewData["Title"] = "Admin Products";
+}
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewData["Title"]</title>
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/adminPanel.css">
+
+    </head>
+    <body>
+        <div class="admin-panel">
+            <div class="sidebar">
+                <h2>Admin Panel</h2>
+                <ul>
+                    <li><a asp-page="/Admin/Dashboard">Dashboard</a></li>
+                    <li class="dropdown">
+                        <a asp-page="" class="dropbtn">Products</a>
+                        <div class="dropdown-content">
+                            <a asp-page="/Admin/ProductsPanel">Product List</a>
+
+                        </div>
+                    </li>
+                    <li><a asp-page="/Index">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <div class="card">
+            <h2 class="text-center" mb-5>List of Products</h2>
+            <div class="row mb-5">
+                <div class="col">
+                    <a class='btn btn-primary' href='/Admin/Products/Create'>New Product</a>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>Created At</th>
+                    <th>Action</th>
+                </tr>
+
+                @foreach (var product in Model.Products)
+                {
+                    <tr>
+                        <td>@product.ProductID</td>
+                        <td>@product.Name</td>
+                        <td>@product.Description</td>
+                        <td>@(product.Price)$</td>
+                        <td><img src="/img/@product.ImageFileName" width="100" /></td>
+                        <td>@product.CreatedAt.ToString("MM/dd/yyyy")</td>
+                        <td style="white-space:nowrap">
+                            <a class="btn btn-primary btn-sm" href="/Admin/Products/Edit?id=@product.ProductID">Edit</a>
+                            <a class="btn btn-danger btn-sm" href="/Admin/Products/Delete?id=@product.ProductID">Delete</a>
+                        </td>
+                    </tr>
+
+                }
+            </table>
+            </div>
+        </div>
+       
+        
+    </body>
+</html>

@@ -1,0 +1,36 @@
+﻿@page
+@model BurgerQueen_PACUR12400.Pages.Admin.DashboardModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewData["Title"]</title>
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/adminPanel.css">
+
+    </head>
+    <body>
+        <div class="admin-panel">
+            <div class="sidebar">
+                <h2>Admin Panel</h2>
+                <ul>
+                    <li><a asp-page="/Admin/Dashboard">Dashboard</a></li>
+                    <li class="dropdown">
+                        <a asp-page="" class="dropbtn">Products</a>
+                        <div class="dropdown-content">
+                            <a asp-page="/Admin/ProductsPanel">Product List</a>
+                            
+                        </div>
+                    </li>
+                    <li><a asp-page="/Index">Logout</a></li>
+                </ul>
+            </div>
+            <div class="content">
+                <h1>Welcome to Dashboard</h1>
+            </div>
+        </div>
+    </body>
+</html>
